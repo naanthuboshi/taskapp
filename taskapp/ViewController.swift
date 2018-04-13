@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
 }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        
+        performSegue(withIdentifier: "cellSegue",sender: nil)
 }
     func tableView(_ tableView: UITableView, editingStyleForRowAt _: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
