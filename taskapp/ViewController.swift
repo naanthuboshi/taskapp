@@ -24,22 +24,22 @@ class ViewController: UIViewController {
         
     }
     func tableView(_ tableView: UITableView, nunberofRowsInSection section: Int) -> Int{
-    return 0
+      return 0
 }
-    func tableView(_ tableView: UITableView, cellForrowAt indexPath : IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdntifier: "Cell", for:indexPath)
+    func tableView(_ tableView: UITableView, cellFoRowAt indexPath : IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         return cell
 }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
 }
-    func tableView(_ tablerView: UITableView. editingStyleForRowAt indexPath: IndexPath)-> UITableViewCellEditingStyle{
+    func tableView(_ tableView: UITableView, editingStyleForRowAt _: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
 }
-    func tableView(_ tableView: UITableView, commit editindStyle: UITabeViewCellEditingStyle, forRowAt indexPath: IndexPath){
+    func tableView(_ tableView: UITableView, commit editindStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
 }
-}
+
 
 
 
