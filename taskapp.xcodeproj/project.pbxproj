@@ -14,6 +14,7 @@
 		F16AAD4620807BBC0039A55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F16AAD4420807BBC0039A55E /* LaunchScreen.storyboard */; };
 		F16AAD5120807BBC0039A55E /* taskappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16AAD5020807BBC0039A55E /* taskappTests.swift */; };
 		F16AAD5C20807BBC0039A55E /* taskappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16AAD5B20807BBC0039A55E /* taskappUITests.swift */; };
+		F16AAD6A2080921F0039A55E /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16AAD692080921F0039A55E /* InputViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		F16AAD5720807BBC0039A55E /* taskappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = taskappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F16AAD5B20807BBC0039A55E /* taskappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskappUITests.swift; sourceTree = "<group>"; };
 		F16AAD5D20807BBC0039A55E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F16AAD692080921F0039A55E /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				F16AAD4220807BBC0039A55E /* Assets.xcassets */,
 				F16AAD4420807BBC0039A55E /* LaunchScreen.storyboard */,
 				F16AAD4720807BBC0039A55E /* Info.plist */,
+				F16AAD692080921F0039A55E /* InputViewController.swift */,
 			);
 			path = taskapp;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F16AAD6A2080921F0039A55E /* InputViewController.swift in Sources */,
 				F16AAD3E20807BB90039A55E /* ViewController.swift in Sources */,
 				F16AAD3C20807BB90039A55E /* AppDelegate.swift in Sources */,
 			);
