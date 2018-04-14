@@ -165,6 +165,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g97-cw-Z80"/>
                     </view>
+                    <connections>
+                        <outlet property="contentsTextView" destination="m7v-dc-Q0x" id="0QS-AK-Zv5"/>
+                        <outlet property="datepicker" destination="Smx-BT-PcO" id="NCf-eF-VS4"/>
+                        <outlet property="titleTextField" destination="h6y-Y7-GXD" id="4ff-cU-kge"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oze-6y-3ZS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

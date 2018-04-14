@@ -7,29 +7,48 @@
 //
 
 import UIKit
+import RealmSwift
 
 class InputViewController: UIViewController {
 
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var contentsTextView: UITextView!
+    @IBOutlet weak var datepicker: UIDatePicker!
+    
+    var task: Task! //追加する
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+        
+        
+      titleTextField.text = task.title
+       contentsTextView.text = task.contents
+      datepicker.date = task.date
 
-        // Do any additional setup after loading the view.
+    
+    
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        try! realm.write {
+            self.task.title = self.titleTextField.text!
+        self.task.contents = self.contentsTextView.text
+            self.task.date = self.datepicker.date
+            self.realm.add(self.task, update: true)
+        }
+        
+        super.viewWillDisappear(animated)
     }
-    */
-
+    @objc func dismissKeyboard(){
+        // キーボードを閉じる
+        view.endEditing(true)
+    }
 }
