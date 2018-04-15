@@ -14,27 +14,25 @@ import Foundation
 class InputViewController: UIViewController,UITextFieldDelegate {
 
     
-    @IBOutlet weak var contentstextfield: UITextView!
-    @IBOutlet weak var titletextfield: UITextField!
+    @IBOutlet weak var contentsTextfield: UITextView!
+    @IBOutlet weak var titleTextfield: UITextField!
     @IBOutlet weak var datepicker: UIDatePicker!
     
     var task: Task! //追加する
     let realm = try! Realm()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      titletextfield.delegate = self
-        
-    }
-        
-    @objc func dismissKeyboard()
-    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self.action:#selector(self.dismissKeyboard)){
+        titleTextfield.delegate = self
+   
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self,action:
+            #selector(self.dismissKeyboard))
        self.view.addGestureRecognizer(tapGesture)
-    
-        titleTextField.text = task.title
-       contentsTextView.text = task.contents
-      datepicker.date = task.date
-    textField.delegate = self
+       
+        contentsTextfield.text = task.contents
+        datepicker.date = task.date
+        titleTextfield.text = task.title
         
     }
     override func didReceiveMemoryWarning() {
@@ -45,24 +43,20 @@ class InputViewController: UIViewController,UITextFieldDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         try! realm.write {
            
-            self.task.title = self.titleTextField.text!
-            self.task.contents = self.contentstextfield.text
+            self.task.title = self.titleTextfield.text!
+            self.task.contents = self.contentsTextfield.text
             self.task.date = self.datepicker.date
             self.realm.add(self.task, update: true)
+            setNotification(task: task)
+            super.viewWillDisappear(animated)
         }
+    }
         @objc func dismissKeyboard(){
             // キーボードを閉じる
-            self.view.endEditing(true){
-                
-                
+            self.view.endEditing(true)
+            
             }
-            return ture
-          titleTextField.text = titleTextField.text
-        }
-        setNotification(task: Task)
-       super.viewWillDisappear(animated)
-    }
-    // タスクのローカル通知を登録する
+    
         func setNotification(task: Task) {
             let content = UNMutableNotificationContent()
             // タイトルと内容を設定(中身がない場合メッセージ無しで音だけの通知になるので「(xxなし)」を表示する)
@@ -103,3 +97,4 @@ class InputViewController: UIViewController,UITextFieldDelegate {
            
 }
 
+}
