@@ -50,7 +50,12 @@ class InputViewController: UIViewController,UITextFieldDelegate {
             self.task.date = self.datepicker.date
             self.realm.add(self.task, update: true)
         }
-      
+        @objc func dismissKeyboard(){
+            // キーボードを閉じる
+            self.view.endEditing(true){
+                
+                
+            }
             return ture
           titleTextField.text = titleTextField.text
         }
@@ -86,12 +91,7 @@ class InputViewController: UIViewController,UITextFieldDelegate {
             center.add(request) { (error) in
                 print(error ?? "ローカル通知登録 OK")  // error が nil ならローカル通知の登録に成功したと表示します。errorが存在すればerrorを表示します。
             }
-            @objc func dismissKeyboard(){
-                // キーボードを閉じる
-                self.view.endEditing(true){
-                    
-                
-            }
+      
             center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
             for request in requests {
                 print("/---------------")
