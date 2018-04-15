@@ -88,7 +88,9 @@ class InputViewController: UIViewController,UITextFieldDelegate {
             }
             @objc func dismissKeyboard(){
                 // キーボードを閉じる
-                self.view.endEditing(true)
+                self.view.endEditing(true){
+                    
+                
             }
             center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
             for request in requests {
