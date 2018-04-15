@@ -27,7 +27,7 @@ class InputViewController: UIViewController,UITextFieldDelegate {
         
     }
         
-    　　　　@objc func dismissKeyboard()
+    @objc func dismissKeyboard()
     let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self.action:#selector(self.dismissKeyboard)){
        self.view.addGestureRecognizer(tapGesture)
     
@@ -44,16 +44,18 @@ class InputViewController: UIViewController,UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         try! realm.write {
-                 textField.resingFirstresponder()
+           
             self.task.title = self.titleTextField.text!
-        self.task.contents = self.contentsTextView.text
+            self.task.contents = self.contentstextfield.text
             self.task.date = self.datepicker.date
             self.realm.add(self.task, update: true)
+        }
+      
             return ture
           titleTextField.text = titleTextField.text
         }
-    func setNotification(task: Task) {
-        super.viewWillDisappear(animated)
+        setNotification(task: Task)
+       super.viewWillDisappear(animated)
     }
     // タスクのローカル通知を登録する
         func setNotification(task: Task) {
@@ -98,4 +100,4 @@ class InputViewController: UIViewController,UITextFieldDelegate {
 
            
 }
-}
+
