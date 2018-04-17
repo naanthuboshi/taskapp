@@ -10,29 +10,38 @@ import UIKit
 import RealmSwift   // ←追加
 import UserNotifications
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     let realm = try! Realm()
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+    let datalist =  ["Category"]
+    var searchResult = [String]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidLoad()
+     super.viewDidLoad()
+    
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
-
-        
+        testsearchBar.enablesReturnKeyAutmatically = false
+        searchResult = dataList
     }
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskArray.count  // ←追加する
+        return taskArray.count
+        return searchResult.count// ←追加する
     }
     
     // 各セルの内容を返すメソッド
@@ -66,7 +75,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // セルが削除が可能なことを伝えるメソッド
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath)-> UITableViewCellEditingStyle {
         return .delete
-    }
+            return searchresult.count
+        
+}
     
     // Delete ボタンが押された時に呼ばれるメソッド
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -86,8 +97,52 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("/---------------")
                 print(request)
                 print("---------------/")
-        }
-    }
+            }
+                //MARK: SearchBarAction
+                // 検索ボタンが押された時に呼ばれる
+         
+                func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+                    print("searchBarSearchButtonClicked")
+                    self.view.endEditing(true)
+                    
+                    searchBar.showsCancelButton = true
+                    searchResult.removeAll()
+            }
+                    if(textSearchBar.text == (""){
+                        searchResult = dateList
+                        }else{
+                        for date in dateList{
+                            if date.containsString(testSearchBar.text!){
+                                searchresult.append(date)
+                            }
+                            searchBar.text = ""
+                            tableView.reloadData()
+                        }
+                        0.lowercased().contains(searchBar.text!.lowercased())
+                    }
+                    self.tableView.reloadData()
+                     testTableView.reloadData()
+                 
+            }
+            
+                
+                // キャンセルボタンが押された時に呼ばれる
+                func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+                    print("searchBarCancelButtonClicked")
+                    searchBar.showsCancelButton = false
+                    self.view.endEditing(true)
+                   
+                
+                // テキストフィールド入力開始前に呼ばれる
+                func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+                    print("searchBarShouldBeginEditing")
+                    searchBar.showsCancelButton = true
+                    return true
+                }
+            }
+    
+            
 }
 }
+
 }

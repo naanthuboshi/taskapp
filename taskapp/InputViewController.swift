@@ -17,6 +17,7 @@ class InputViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var contentsTextfield: UITextView!
     @IBOutlet weak var titleTextfield: UITextField!
     @IBOutlet weak var datepicker: UIDatePicker!
+    @IBOutlet weak var categoryTextfield: UITextField!
     
     var task: Task! //追加する
     let realm = try! Realm()
@@ -43,6 +44,7 @@ class InputViewController: UIViewController,UITextFieldDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         try! realm.write {
            
+            self.task.category = self.categoryTextfield.text!
             self.task.title = self.titleTextfield.text!
             self.task.contents = self.contentsTextfield.text
             self.task.date = self.datepicker.date
