@@ -100,7 +100,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="SearchBar" destination="l8d-p1-rBn" id="6Kx-Ol-PWc"/>
-                        <outlet property="seaccBar" destination="l8d-p1-rBn" id="ELW-Dj-8zz"/>
                         <outlet property="tableView" destination="Is2-fr-2Vi" id="g23-Ga-K4Z"/>
                         <segue destination="Ea2-vc-BoH" kind="show" identifier="cellSegue" id="0bn-vb-XYF"/>
                     </connections>
