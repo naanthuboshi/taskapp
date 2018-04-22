@@ -14,8 +14,11 @@ import UserNotifications
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+  
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    @IBOutlet weak var SearchBar: UISearchBar!
     
     let realm = try! Realm()
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
@@ -29,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.enablesReturnKeyAutomatically = false
+        SearchBar.enablesReturnKeyAutomatically = false
         searchResult = datalist
     }
     
