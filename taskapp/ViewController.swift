@@ -13,7 +13,7 @@ import UserNotifications
 
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,23 +22,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let datalist =  ["Category"]
     var searchResult = [String]()
     
-    override func viewDidLoad()
-     super.viewDidLoad()
-    
+    override func viewDidLoad(){
+        
+        super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
-        testsearchBar.enablesReturnKeyAutmatically = false
-        searchResult = dataList
+        searchBar.enablesReturnKeyAutomatically = false
+        searchResult = datalist
     }
-
+    
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
         return searchResult.count// ←追加する
@@ -75,9 +76,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // セルが削除が可能なことを伝えるメソッド
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath)-> UITableViewCellEditingStyle {
         return .delete
-            return searchresult.count
+        return UITableViewCellEditingStyle(rawValue: searchResult.count)!
         
-}
+    }
     
     // Delete ボタンが押された時に呼ばれるメソッド
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -92,57 +93,60 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.realm.delete(task)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-        center.getPendingNotificationRequests{(requests: [UNNotificationRequest]) in
-            for request in requests {
-                print("/---------------")
-                print(request)
-                print("---------------/")
-            }
+            center.getPendingNotificationRequests{(requests: [UNNotificationRequest]) in
+                for request in requests {
+                    print("/---------------")
+                    print(request)
+                    print("---------------/")
+                }
                 //MARK: SearchBarAction
                 // 検索ボタンが押された時に呼ばれる
-         
+                
                 func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
                     print("searchBarSearchButtonClicked")
                     self.view.endEditing(true)
                     
                     searchBar.showsCancelButton = true
-                    searchResult.removeAll()
-            }
-                    if(textSearchBar.text == (""){
-                        searchResult = dateList
-                        }else{
-                        for date in dateList{
-                            if date.containsString(testSearchBar.text!){
-                                searchresult.append(date)
+                    self.searchResult.removeAll()
+                    
+                    if(searchBar.text == ""){
+                        self.searchResult = self.datalist
+                    }else{
+                        for date in self.datalist{
+                            if date.contains(searchBar.text!){
+                                self.searchResult.append(date)
                             }
-                            searchBar.text = ""
-                            tableView.reloadData()
                         }
-                        0.lowercased().contains(searchBar.text!.lowercased())
+                        
+                        
+                        
+                        tableView.reloadData()
+                        
                     }
-                    self.tableView.reloadData()
-                     testTableView.reloadData()
-                 
-            }
-            
+                }
                 
                 // キャンセルボタンが押された時に呼ばれる
                 func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
                     print("searchBarCancelButtonClicked")
                     searchBar.showsCancelButton = false
                     self.view.endEditing(true)
-                   
-                
-                // テキストフィールド入力開始前に呼ばれる
-                func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-                    print("searchBarShouldBeginEditing")
-                    searchBar.showsCancelButton = true
-                    return true
+                    
+                    
+                    // テキストフィールド入力開始前に呼ばれる
+                    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+                        print("searchBarShouldBeginEditing")
+                        searchBar.showsCancelButton = true
+                        return true
+                    }
                 }
+                
+                
             }
-    
-            
-}
 }
 
-}
+
+
+
+
+
+
