@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7D5C0379137C669536665974 /* Pods_taskapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A821C0143450B37AA30715D /* Pods_taskapp.framework */; };
+		F12B26D2208CBD7800F294DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B26D1208CBD7800F294DF /* ViewController.swift */; };
 		F16AAD3C20807BB90039A55E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16AAD3B20807BB90039A55E /* AppDelegate.swift */; };
-		F16AAD3E20807BB90039A55E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16AAD3D20807BB90039A55E /* ViewController.swift */; };
 		F16AAD4120807BB90039A55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F16AAD3F20807BB90039A55E /* Main.storyboard */; };
 		F16AAD4320807BBC0039A55E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F16AAD4220807BBC0039A55E /* Assets.xcassets */; };
 		F16AAD4620807BBC0039A55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F16AAD4420807BBC0039A55E /* LaunchScreen.storyboard */; };
@@ -39,9 +39,9 @@
 /* Begin PBXFileReference section */
 		3A821C0143450B37AA30715D /* Pods_taskapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C743E2278A4B25D622C11A6 /* Pods-taskapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskapp/Pods-taskapp.debug.xcconfig"; sourceTree = "<group>"; };
+		F12B26D1208CBD7800F294DF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F16AAD3820807BB90039A55E /* taskapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F16AAD3B20807BB90039A55E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F16AAD3D20807BB90039A55E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F16AAD4020807BB90039A55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F16AAD4220807BBC0039A55E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F16AAD4520807BBC0039A55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 		F16AAD3A20807BB90039A55E /* taskapp */ = {
 			isa = PBXGroup;
 			children = (
+				F12B26D1208CBD7800F294DF /* ViewController.swift */,
 				F16AAD3B20807BB90039A55E /* AppDelegate.swift */,
-				F16AAD3D20807BB90039A55E /* ViewController.swift */,
 				F16AAD3F20807BB90039A55E /* Main.storyboard */,
 				F16AAD4220807BBC0039A55E /* Assets.xcassets */,
 				F16AAD4420807BBC0039A55E /* LaunchScreen.storyboard */,
@@ -331,7 +331,7 @@
 			files = (
 				F1B413272081E66B00A1982C /* Task.swift in Sources */,
 				F16AAD6A2080921F0039A55E /* InputViewController.swift in Sources */,
-				F16AAD3E20807BB90039A55E /* ViewController.swift in Sources */,
+				F12B26D2208CBD7800F294DF /* ViewController.swift in Sources */,
 				F16AAD3C20807BB90039A55E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +506,7 @@
 			baseConfigurationReference = 4C743E2278A4B25D622C11A6 /* Pods-taskapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -524,6 +525,7 @@
 			baseConfigurationReference = FA6FE6EB1BD94C84FA079517 /* Pods-taskapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

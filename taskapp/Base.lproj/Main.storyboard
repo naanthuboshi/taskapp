@@ -74,7 +74,7 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="l8d-p1-rBn">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="l8d-p1-rBn" userLabel="SearchBar">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -99,7 +99,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="SearchBar" destination="l8d-p1-rBn" id="6Kx-Ol-PWc"/>
                         <outlet property="tableView" destination="Is2-fr-2Vi" id="g23-Ga-K4Z"/>
                         <segue destination="Ea2-vc-BoH" kind="show" identifier="cellSegue" id="0bn-vb-XYF"/>
                     </connections>
