@@ -195,14 +195,10 @@
                         <viewLayoutGuide key="safeArea" id="g97-cw-Z80"/>
                     </view>
                     <connections>
-                        <outlet property="ContentsTextField" destination="m7v-dc-Q0x" id="wTd-Eu-sEM"/>
-                        <outlet property="TitleTextField" destination="h6y-Y7-GXD" id="I3b-Sn-GOt"/>
                         <outlet property="categoryTextfield" destination="cir-Nt-Kef" id="Dvg-u2-PQU"/>
-                        <outlet property="contentsTextView" destination="m7v-dc-Q0x" id="0QS-AK-Zv5"/>
-                        <outlet property="contentstextfield" destination="m7v-dc-Q0x" id="u6v-TG-WIC"/>
+                        <outlet property="contentstextfield" destination="m7v-dc-Q0x" id="WxZ-TM-fns"/>
                         <outlet property="datepicker" destination="Smx-BT-PcO" id="NCf-eF-VS4"/>
-                        <outlet property="titleTextField" destination="h6y-Y7-GXD" id="4ff-cU-kge"/>
-                        <outlet property="titletextfield" destination="h6y-Y7-GXD" id="8x6-hk-w6p"/>
+                        <outlet property="titletextfield" destination="h6y-Y7-GXD" id="d1e-Dn-7Yp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oze-6y-3ZS" userLabel="First Responder" sceneMemberID="firstResponder"/>

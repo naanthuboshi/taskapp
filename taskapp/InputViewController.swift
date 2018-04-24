@@ -14,8 +14,11 @@ import Foundation
 class InputViewController: UIViewController,UITextFieldDelegate {
 
     
-    @IBOutlet weak var contentsTextfield: UITextView!
-    @IBOutlet weak var titleTextfield: UITextField!
+
+    @IBOutlet weak var titletextfield: UITextField!
+    
+    @IBOutlet weak var contentstextfield: UITextView!
+    
     @IBOutlet weak var datepicker: UIDatePicker!
     @IBOutlet weak var categoryTextfield: UITextField!
     
