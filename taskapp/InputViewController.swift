@@ -28,15 +28,15 @@ class InputViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleTextfield.delegate = self
+        titletextfield.delegate = self
    
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self,action:
             #selector(self.dismissKeyboard))
        self.view.addGestureRecognizer(tapGesture)
        
-        contentsTextfield.text = task.contents
+        contentstextfield.text = task.contents
         datepicker.date = task.date
-        titleTextfield.text = task.title
+        titletextfield.text = task.title
         
     }
     override func didReceiveMemoryWarning() {
@@ -48,8 +48,8 @@ class InputViewController: UIViewController,UITextFieldDelegate {
         try! realm.write {
            
             self.task.category = self.categoryTextfield.text!
-            self.task.title = self.titleTextfield.text!
-            self.task.contents = self.contentsTextfield.text
+            self.task.title = self.titletextfield.text!
+            self.task.contents = self.contentstextfield.text
             self.task.date = self.datepicker.date
             self.realm.add(self.task, update: true)
             setNotification(task: task)
