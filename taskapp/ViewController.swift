@@ -12,7 +12,7 @@ import UserNotifications
 
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate  {
    
    
    
@@ -106,7 +106,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                print("---------------/")
             }
          }
-      }
+         }
+      
    }
    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
       let inputViewController:InputViewController = segue.destination as! InputViewController
