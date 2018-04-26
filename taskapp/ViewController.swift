@@ -12,8 +12,7 @@ import UserNotifications
 
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate  {
-   
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
    
    
    @IBOutlet weak var tableView: UITableView!
@@ -106,7 +105,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                print("---------------/")
             }
          }
-         }
+      }
       
    }
    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -169,6 +168,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    }
    
 }
+
 
 
 
