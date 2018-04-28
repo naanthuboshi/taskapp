@@ -36,6 +36,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       tableView.dataSource = self
       SearchBar.enablesReturnKeyAutomatically = false
       searchResult = datalist
+      SearchBar.delegate = self
+     
+      
    }
    
    
@@ -81,7 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    // セルが削除が可能なことを伝えるメソッド
    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath)-> UITableViewCellEditingStyle {
       return .delete
-      return UITableViewCellEditingStyle(rawValue: searchResult.count)!
+      return UITableViewCellEditingStyle(rawValue: taskArray.count)!
       
    }
    
@@ -108,6 +111,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
       
    }
+   
    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
       let inputViewController:InputViewController = segue.destination as! InputViewController
       
@@ -151,7 +155,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
       }
    }
-   
+   // テキストフィールド入力開始前に呼ばれる
+   func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+      print("searchBarShouldBeginEditing")
+      searchBar.showsCancelButton = true
+      return true
+   }
    // キャンセルボタンが押された時に呼ばれる
    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
       print("searchBarCancelButtonClicked")
@@ -159,15 +168,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.view.endEditing(true)
       
       
-      // テキストフィールド入力開始前に呼ばれる
-      func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-         print("searchBarShouldBeginEditing")
-         searchBar.showsCancelButton = true
-         return true
+   
       }
    }
    
-}
+
 
 
 
