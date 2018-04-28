@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return taskArray.count
-      return searchResult.count// ←追加する
+   
    }
    
    // 各セルの内容を返すメソッド
@@ -84,7 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    // セルが削除が可能なことを伝えるメソッド
    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath)-> UITableViewCellEditingStyle {
       return .delete
-      return UITableViewCellEditingStyle(rawValue: taskArray.count)!
+     
       
    }
    
