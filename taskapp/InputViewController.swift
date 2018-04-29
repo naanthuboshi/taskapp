@@ -37,7 +37,7 @@ class InputViewController: UIViewController,UITextFieldDelegate {
         contentstextfield.text = task.contents
         datepicker.date = task.date
         titletextfield.text = task.title
-        categoryTextfield.text = task.contents
+        categoryTextfield.text = task.category
         
     }
     override func didReceiveMemoryWarning() {

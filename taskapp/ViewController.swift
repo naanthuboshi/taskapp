@@ -16,9 +16,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
    
    @IBOutlet weak var tableView: UITableView!
-   
-   
-   
    @IBOutlet weak var SearchBar: UISearchBar!
    
    
@@ -37,9 +34,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       SearchBar.enablesReturnKeyAutomatically = false
       searchResult = datalist
       SearchBar.delegate = self
-     
+      
       
    }
+   
    
    
    
@@ -50,7 +48,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return taskArray.count
-   
+      
    }
    
    // 各セルの内容を返すメソッド
@@ -80,28 +78,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       performSegue(withIdentifier: "cellSegue",sender: nil)
    }
+
+ 
    
-   // セルが削除が可能なことを伝えるメソッド
-   func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath)-> UITableViewCellEditingStyle {
-      return .delete
-     
-      
-   }
    
    // Delete ボタンが押された時に呼ばれるメソッド
    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
       if editingStyle == .delete {
          
+         // 削除されたタスクを取得する
          let task = self.taskArray[indexPath.row]
          
+         // ローカル通知をキャンセルする
          let center = UNUserNotificationCenter.current()
          center.removePendingNotificationRequests(withIdentifiers: [String(task.id)])
-         // データベースから削除する  // ←以降追加する
+         
+         // データベースから削除する
          try! realm.write {
             self.realm.delete(task)
             tableView.deleteRows(at: [indexPath], with: .fade)
          }
-         center.getPendingNotificationRequests{(requests: [UNNotificationRequest]) in
+         
+         // 未通知のローカル通知一覧をログ出力
+         center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
             for request in requests {
                print("/---------------")
                print(request)
@@ -109,69 +108,69 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
          }
       }
-      
    }
-   
    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-      let inputViewController:InputViewController = segue.destination as! InputViewController
-      
-      if segue.identifier == "cellSegue"{
-         let indexPath = self.tableView.indexPathForSelectedRow
-         inputViewController.task = self.taskArray[indexPath!.row]
-      }else{
-         let task = Task()
-         task.date = Date()
-         
-         let taskArray = self.realm.objects(Task.self)
-         if taskArray.count != 0{
-            task.id = taskArray.max(ofProperty: "id")! + 1
-         }
-         inputViewController.task = task
-      }
-   }
-   
-   //MARK: SearchBarAction
-   // 検索ボタンが押された時に呼ばれる
-   
-   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-      print("searchBarSearchButtonClicked")
-      self.view.endEditing(true)
-      
-      searchBar.showsCancelButton = true
-      self.searchResult.removeAll()
-      
-      if(searchBar.text == ""){
-         self.searchResult = self.datalist
-      }else{
-         for date in self.datalist{
-            if date.contains(searchBar.text!){
-               self.searchResult.append(date)
+            let inputViewController:InputViewController = segue.destination as! InputViewController
+            
+            if segue.identifier == "cellSegue"{
+               let indexPath = self.tableView.indexPathForSelectedRow
+               inputViewController.task = self.taskArray[indexPath!.row]
+            }else{
+               let task = Task()
+               task.date = Date()
+               
+               let taskArray = self.realm.objects(Task.self)
+               if taskArray.count != 0{
+                  task.id = taskArray.max(ofProperty: "id")! + 1
+               }
+               inputViewController.task = task
             }
          }
          
+         //MARK: SearchBarAction
+         // 検索ボタンが押された時に呼ばれる
          
-         
-         tableView.reloadData()
-         
-      }
+         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            print("searchBarSearchButtonClicked")
+            self.view.endEditing(true)
+            
+            searchBar.showsCancelButton = true
+            self.searchResult.removeAll()
+            
+            if(searchBar.text == ""){
+               self.searchResult = self.datalist
+            }else{
+               for date in self.datalist{
+                  if date.contains(searchBar.text!){
+                     self.searchResult.append(date)
+                  }
+               }
+               
+               
+               
+               tableView.reloadData()
+               
+            }
+         }
+         // テキストフィールド入力開始前に呼ばれる
+         func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+            print("searchBarShouldBeginEditing")
+            searchBar.showsCancelButton = true
+            return true
+         }
+         // キャンセルボタンが押された時に呼ばれる
+         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            print("searchBarCancelButtonClicked")
+            searchBar.showsCancelButton = false
+            self.view.endEditing(true)
+            
+         }
    }
-   // テキストフィールド入力開始前に呼ばれる
-   func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-      print("searchBarShouldBeginEditing")
-      searchBar.showsCancelButton = true
-      return true
-   }
-   // キャンセルボタンが押された時に呼ばれる
-   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-      print("searchBarCancelButtonClicked")
-      searchBar.showsCancelButton = false
-      self.view.endEditing(true)
       
+
       
-   
-      }
-   }
-   
+
+
 
 
 
