@@ -134,10 +134,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       print("searchBarSearchButtonClicked")
       tableView.reloadData()
       
-      let predicate = NSPredicate(format: "category = %@ AND searchbar BEGINSWITH %@", "name", "TaskArray")
-      taskArray = realm.objects(Task.self).filter(predicate)
-      
-      
+      let predicate = NSPredicate(format: "category  %@ BEGINSWITH %@", SearchBar.text!)
+         taskArray = realm.objects(Task.self).filter(predicate)
+   
       self.view.endEditing(true)
       
       searchBar.showsCancelButton = true
