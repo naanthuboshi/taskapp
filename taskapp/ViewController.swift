@@ -78,8 +78,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       performSegue(withIdentifier: "cellSegue",sender: nil)
    }
-
- 
+   
+   
    
    
    // Delete ボタンが押された時に呼ばれるメソッド
@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       if editingStyle == .delete {
          
          // 削除されたタスクを取得する
-         let task = self.taskArray[indexPath.row]
+         let task = taskArray[indexPath.row]
          
          // ローカル通知をキャンセルする
          let center = UNUserNotificationCenter.current()
@@ -110,65 +110,75 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
    }
    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-            let inputViewController:InputViewController = segue.destination as! InputViewController
-            
-            if segue.identifier == "cellSegue"{
-               let indexPath = self.tableView.indexPathForSelectedRow
-               inputViewController.task = self.taskArray[indexPath!.row]
-            }else{
-               let task = Task()
-               task.date = Date()
-               
-               let taskArray = self.realm.objects(Task.self)
-               if taskArray.count != 0{
-                  task.id = taskArray.max(ofProperty: "id")! + 1
-               }
-               inputViewController.task = task
-            }
-         }
+      let inputViewController:InputViewController = segue.destination as! InputViewController
+      
+      if segue.identifier == "cellSegue"{
+         let indexPath = self.tableView.indexPathForSelectedRow
+         inputViewController.task = self.taskArray[indexPath!.row]
+      }else{
+         let task = Task()
+         task.date = Date()
          
-         //MARK: SearchBarAction
-         // 検索ボタンが押された時に呼ばれる
-         
-         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            print("searchBarSearchButtonClicked")
-            self.view.endEditing(true)
-            
-            searchBar.showsCancelButton = true
-            self.searchResult.removeAll()
-            
-            if(searchBar.text == ""){
-               self.searchResult = self.datalist
-            }else{
-               for date in self.datalist{
-                  if date.contains(searchBar.text!){
-                     self.searchResult.append(date)
-                  }
-               }
-               
-               
-               
-               tableView.reloadData()
-               
-            }
+         let taskArray = self.realm.objects(Task.self)
+         if taskArray.count != 0{
+            task.id = taskArray.max(ofProperty: "id")! + 1
          }
-         // テキストフィールド入力開始前に呼ばれる
-         func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-            print("searchBarShouldBeginEditing")
-            searchBar.showsCancelButton = true
-            return true
-         }
-         // キャンセルボタンが押された時に呼ばれる
-         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-            print("searchBarCancelButtonClicked")
-            searchBar.showsCancelButton = false
-            self.view.endEditing(true)
-            
-         }
+         inputViewController.task = task
+      }
    }
+   
+   //MARK: SearchBarAction
+   // 検索ボタンが押された時に呼ばれる
+   
+   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+      print("searchBarSearchButtonClicked")
+      tableView.reloadData()
       
+      let predicate = NSPredicate(format: "category = %@ AND searchbar BEGINSWITH %@", "name", "TaskArray")
+      taskArray = realm.objects(Task.self).filter(predicate)
+      
+      
+      self.view.endEditing(true)
+      
+      searchBar.showsCancelButton = true
+      self.searchResult.removeAll()
+      
+      if(searchBar.text == ""){
+         self.searchResult = self.datalist
+      }else{
+         for date in self.datalist{
+            if date.contains(searchBar.text!){
+               self.searchResult.append(date)
+            }
+         }
+         
+         
+         
+         tableView.reloadData()
+         
+      }
+   }
+   // テキストフィールド入力開始前に呼ばれる
+   func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+      print("searchBarShouldBeginEditing")
+      searchBar.showsCancelButton = true
+      return true
+   }
+   // キャンセルボタンが押された時に呼ばれる
+   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+      print("searchBarCancelButtonClicked")
+      
+      searchBar.showsCancelButton = false
+      self.view.endEditing(true)
+      
+   }
+}
 
-      
+
+
+
+
+
 
 
 
