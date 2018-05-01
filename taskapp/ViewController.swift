@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       SearchBar.enablesReturnKeyAutomatically = false
       searchResult = datalist
       SearchBar.delegate = self
-      
+
       
    }
    
@@ -134,9 +134,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       print("searchBarSearchButtonClicked")
       tableView.reloadData()
       
-      let predicate = NSPredicate(format: "category  %@ BEGINSWITH %@", SearchBar.text!)
-         taskArray = realm.objects(Task.self).filter(predicate)
-   
+      if searchResult.isEmpty == false{
+      let predicate = NSPredicate(format: "category BEGINSWITH %@", SearchBar.text!)
+         taskArray = realm.objects(Task.self)
+            .filter(predicate)
+            .sorted(byKeyPath: "date", ascending: false)
+      }
+      else {
+         taskArray = realm.objects(Task.self)
+            .sorted(byKeyPath: "date", ascending: false)
+      }
+ 
       self.view.endEditing(true)
       
       searchBar.showsCancelButton = true
@@ -171,8 +179,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.view.endEditing(true)
       
    }
-}
 
+}
 
 
 
