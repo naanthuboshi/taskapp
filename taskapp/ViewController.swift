@@ -139,12 +139,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          taskArray = realm.objects(Task.self)
             .filter(predicate)
             .sorted(byKeyPath: "date", ascending: false)
-      }
-      else {
-         taskArray = realm.objects(Task.self)
+      
+      } else {
+            self.taskArray = self.realm.objects(Task.self)
             .sorted(byKeyPath: "date", ascending: false)
+      
       }
- 
       self.view.endEditing(true)
       
       searchBar.showsCancelButton = true
@@ -179,8 +179,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.view.endEditing(true)
       
    }
-
 }
+
 
 
 
