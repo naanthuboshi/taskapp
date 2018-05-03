@@ -134,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       print("searchBarSearchButtonClicked")
       tableView.reloadData()
       
-      if searchResult.isEmpty == false{
+      if searchBar.text?.isEmpty == false{
       let predicate = NSPredicate(format: "category BEGINSWITH %@", SearchBar.text!)
          taskArray = realm.objects(Task.self)
             .filter(predicate)
